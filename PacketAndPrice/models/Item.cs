@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacketAndPrice.models
 {
-    abstract class Item
+    public class Item
     {
         public int Length { get; set; }
         public int Weight { get; set; }
@@ -29,6 +29,15 @@ namespace PacketAndPrice.models
         public virtual int CalculateVolume()
         {
             return Length;
+        }
+
+        public bool CheckWeight()
+        {
+            if (Weight > MaxWeight)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

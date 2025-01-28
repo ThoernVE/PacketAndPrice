@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacketAndPrice.models
 {
-    internal class Package : Item
+    public class Package : Item
     {
         public int Width { get; set; }
         public int Height { get; set; }
@@ -46,15 +46,15 @@ namespace PacketAndPrice.models
 
         public int ShortestSide(int x, int y, int z)
         {
-            if (x < y && x < z)
+            if (x <= y && x <= z)
             {
                 return x;
             }
-            else if (y < x && y < z)
+            else if (y <= x && y <= z)
             {
                 return y;
             }
-            else if (z < x && z < y)
+            else if (z <= x && z <= y)
             {
                 return z;
             }
@@ -66,15 +66,15 @@ namespace PacketAndPrice.models
 
         public int LongestSide(int x, int y, int z)
         {
-            if (z < x && y < x)
+            if (z <= x && y <= x)
             {
                 return x;
             }
-            else if (z < y && x < y)
+            else if (z <= y && x <= y)
             {
                 return y;
             }
-            else if (x < z && y < z)
+            else if (x <= z && y <= z)
             {
                 return z;
             }
