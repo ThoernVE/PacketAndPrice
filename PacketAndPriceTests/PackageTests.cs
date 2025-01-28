@@ -107,5 +107,11 @@ namespace PacketAndPriceTests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void CalculateCorrectPriceWhen()
+        {
+            //Add some nice logic
+        }
+
     }
 }
