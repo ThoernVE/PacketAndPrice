@@ -8,10 +8,10 @@ namespace PacketAndPrice.models
 {
     internal class Package : Item
     {
-        public int Width {  get; set; }
+        public int Width { get; set; }
         public int Height { get; set; }
 
-        public Package(int length, int weight, int width, int height)  : base(length, weight )
+        public Package(int length, int weight, int width, int height) : base(length, weight)
         {
             Width = width;
             Height = height;
@@ -21,6 +21,20 @@ namespace PacketAndPrice.models
         {
             int longestSide = LongestSide(Length, Height, Width);
             int shortestSide = ShortestSide(Length, Height, Width);
+            if (longestSide < 30 && Weight <= 2)
+            {
+                Price = 29;
+            }
+            else if (longestSide < 30 && Weight <= 10)
+            {
+                Price = 49;
+            }
+            else if (longestSide < 30 && Weight < 20)
+            {
+                Price = 79;
+            }
+
+
 
             return longestSide * shortestSide * Weight + 10000; //10000 is for öre?
         }
@@ -36,11 +50,11 @@ namespace PacketAndPrice.models
             {
                 return x;
             }
-            else if(y < x && y < z)
+            else if (y < x && y < z)
             {
                 return y;
             }
-            else if(z < x && z < y)
+            else if (z < x && z < y)
             {
                 return z;
             }
@@ -52,7 +66,7 @@ namespace PacketAndPrice.models
 
         public int LongestSide(int x, int y, int z)
         {
-            if(z < x && y < x)
+            if (z < x && y < x)
             {
                 return x;
             }
@@ -60,7 +74,7 @@ namespace PacketAndPrice.models
             {
                 return y;
             }
-            else if(x < z && y < z)
+            else if (x < z && y < z)
             {
                 return z;
             }
