@@ -22,7 +22,7 @@ namespace PacketAndPrice.models
             int longestSide = LongestSide(Length, Height, Width);
             int shortestSide = ShortestSide(Length, Height, Width);
 
-            return longestSide * shortestSide * Weight + 10000;
+            return longestSide * shortestSide * Weight + 10000; //10000 is for öre?
         }
 
         public override int CalculateVolume()
