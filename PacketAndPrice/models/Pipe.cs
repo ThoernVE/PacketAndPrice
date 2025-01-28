@@ -16,5 +16,22 @@ namespace PacketAndPrice.models
             Diameter = diameter;
             Circumference = circumference;
         }
+
+        public override int CalculateVolume()
+        {
+            return Convert.ToInt32(Math.PI) * ((Diameter / 2) * (Diameter / 2)) * Length; //Think about using different measurements than int. Math.PI is normally double, maybe go with doubles?
+        }
+
+        public override int CalculatePrice()
+        {
+            if(Weight < 2)
+            {
+                return Circumference * Length * 2;
+            }
+            else
+            {
+                return Circumference * Length * Weight;
+            }
+        }
     }
 }
