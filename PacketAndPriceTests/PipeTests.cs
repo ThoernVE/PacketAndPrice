@@ -57,5 +57,38 @@ namespace PacketAndPriceTests
             //Assert
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void Should_ReturnTrue_When_CreatingPipe()
+        {
+            //Arrange
+            bool expected = true;
+
+            //Act
+            bool actual = Pipe.CreatePipe(1, 1, 1);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [MemberData(nameof(Data))]
+        public void Should_ReturnFalse_When_OneValueIsZeroOrLess(double length, double weight, double diameter)
+        {
+            //Arrange
+
+            //Act
+            bool actual = Pipe.CreatePipe(length, weight, diameter);
+
+            //Assert
+            Assert.False(actual);
+        }
+
+        public static IEnumerable<object[]> Data => new List<object[]>
+        {
+            new object[] {-1, 1, 1 },
+            new object[] {1, -1, 1 },
+            new object[] {1, 1, -1 }
+        };
     }
 }
