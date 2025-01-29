@@ -8,14 +8,14 @@ namespace PacketAndPrice.models
 {
     public class Item
     {
-        public float Length { get; set; }
-        public float Weight { get; set; }
-        public float Volume { get; set; }
+        public double Length { get; set; }
+        public double Weight { get; set; }
+        public double Volume { get; set; }
         public decimal Price { get; set; }
 
         public static int MaxWeight = 20;
 
-        public Item(float length, float weight)
+        public Item(double length, double weight)
         {
             Length = length;
             Weight = weight;
@@ -26,7 +26,7 @@ namespace PacketAndPrice.models
             return Convert.ToDecimal(Length * Weight);
         }
 
-        public virtual float CalculateVolume()
+        public virtual double CalculateVolume()
         {
             return Length;
         }

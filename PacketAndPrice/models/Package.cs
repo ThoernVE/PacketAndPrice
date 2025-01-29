@@ -8,10 +8,10 @@ namespace PacketAndPrice.models
 {
     public class Package : Item
     {
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
 
-        public Package(float length, float weight, float width, float height) : base(length, weight)
+        public Package(double length, double weight, double width, double height) : base(length, weight)
         {
             Width = width;
             Height = height;
@@ -19,8 +19,8 @@ namespace PacketAndPrice.models
 
         public override decimal CalculatePrice()
         {
-            float longestSide = LongestSide(Length, Height, Width);
-            float shortestSide = ShortestSide(Length, Height, Width);
+            double longestSide = LongestSide(Length, Height, Width);
+            double shortestSide = ShortestSide(Length, Height, Width);
             if (longestSide < 0.3F && Weight <= 2)
             {
                 return 29;
@@ -44,9 +44,9 @@ namespace PacketAndPrice.models
             return price + 100; //10000 is for öre?, made it 100 for kronor instead
         }
 
-        public override float CalculateVolume()
+        public override double CalculateVolume()
         {
-            float volume = Length * Width * Height;
+            double volume = Length * Width * Height;
             if(volume <= 0)
             {
                 Console.WriteLine("There was an error setting the volume.");
@@ -55,7 +55,7 @@ namespace PacketAndPrice.models
             return volume;
         }
 
-        public float ShortestSide(float x, float y, float z)
+        public double ShortestSide(double x, double y, double z)
         {
             if (x <= y && x <= z)
             {
@@ -75,7 +75,7 @@ namespace PacketAndPrice.models
             }
         }
 
-        public float LongestSide(float x, float y, float z)
+        public double LongestSide(double x, double y, double z)
         {
             if (z <= x && y <= x)
             {

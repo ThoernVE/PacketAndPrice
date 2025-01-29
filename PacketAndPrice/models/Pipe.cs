@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace PacketAndPrice.models
 {
-    internal class Pipe : Item
+    public class Pipe : Item
     {
-        public float Diameter {  get; set; }
-        public float Circumference { get; set; }
+        public double Diameter {  get; set; }
+        public double Circumference { get; set; }
 
-        public Pipe(float length, float weight, float diameter, float circumference) : base(length, weight)
+        public Pipe(double length, double weight, double diameter) : base(length, weight)
         {
             Diameter = diameter;
-            Circumference = circumference;
+            Circumference = Convert.ToDouble(Math.PI * Diameter);
         }
 
-        public override float CalculateVolume()
+        public override double CalculateVolume()
         {
-            return Convert.ToInt32(Math.PI) * ((Diameter / 2) * (Diameter / 2)) * Length; //Think about using different measurements than int. Math.PI is normally double, maybe go with doubles?
+            return Convert.ToDouble(Math.PI) * ((Diameter / 2) * (Diameter / 2)) * Length; //Think about using different measurements than int. Math.PI is normally double, maybe go with doubles?
         }
 
         public override decimal CalculatePrice()

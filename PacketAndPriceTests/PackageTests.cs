@@ -14,14 +14,14 @@ namespace PacketAndPriceTests
         [InlineData(1F, 2F, 3F)]
         [InlineData(2F, 1F, 3F)]
         [InlineData(3F, 2F, 1F)]
-        public void ShouldReturnLowestNumber_When_DifferentNumbers(float length, float width, float height)
+        public void ShouldReturnLowestNumber_When_DifferentNumbers(double length, double width, double height)
         {
             //Arrange
             var sut = new Package(length, 15, width, height);
-            float expected = 1;
+            double expected = 1;
 
             //Act
-            float actual = sut.ShortestSide(sut.Length, sut.Width, sut.Height);
+            double actual = sut.ShortestSide(sut.Length, sut.Width, sut.Height);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -31,14 +31,14 @@ namespace PacketAndPriceTests
         [InlineData(1, 1, 3)]
         [InlineData(2, 1, 1)]
         [InlineData(1, 2, 1)]
-        public void Should_ReturnLowestNumber_When_TwoNumbersAreSame(float length, float width, float height)
+        public void Should_ReturnLowestNumber_When_TwoNumbersAreSame(double length, double width, double height)
         {
             //Arrange
             var sut = new Package(length, 15, width, height);
-            float expected = 1;
+            double expected = 1;
 
             //Act
-            float actual = sut.ShortestSide(sut.Length, sut.Width, sut.Height);
+            double actual = sut.ShortestSide(sut.Length, sut.Width, sut.Height);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -49,10 +49,10 @@ namespace PacketAndPriceTests
         {
             //Arrange
             var sut = new Package(1, 15, 1, 1);
-            float expected = 1;
+            double expected = 1;
 
             //Act
-            float actual = sut.ShortestSide(sut.Length, sut.Width, sut.Height);
+            double actual = sut.ShortestSide(sut.Length, sut.Width, sut.Height);
 
 
             //Assert
@@ -63,14 +63,14 @@ namespace PacketAndPriceTests
         [InlineData(1, 2, 3)]
         [InlineData(2, 1, 3)]
         [InlineData(3, 2, 1)]
-        public void ShouldReturnHighestNumber_When_DifferentNumbers(int length, int width, int height)
+        public void ShouldReturnHighestNumber_When_DifferentNumbers(double length, double width, double height)
         {
             //Arrange
             var sut = new Package(length, 15, width, height);
-            float expected = 3;
+            double expected = 3;
 
             //Act
-            float actual = sut.LongestSide(sut.Length, sut.Width, sut.Height);
+            double actual = sut.LongestSide(sut.Length, sut.Width, sut.Height);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -80,14 +80,14 @@ namespace PacketAndPriceTests
         [InlineData(1, 1, 2)]
         [InlineData(2, 1, 1)]
         [InlineData(1, 2, 1)]
-        public void Should_ReturnHighestNumber_When_TwoNumbersAreSame(int length, int width, int height)
+        public void Should_ReturnHighestNumber_When_TwoNumbersAreSame(double length, double width, double height)
         {
             //Arrange
             var sut = new Package(length, 15, width, height);
-            float expected = 2;
+            double expected = 2;
 
             //Act
-            float actual = sut.LongestSide(sut.Length, sut.Width, sut.Height);
+            double actual = sut.LongestSide(sut.Length, sut.Width, sut.Height);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -98,10 +98,10 @@ namespace PacketAndPriceTests
         {
             //Arrange
             var sut = new Package(1, 15, 1, 1);
-            float expected = 1;
+            double expected = 1;
 
             //Act
-            float actual = sut.LongestSide(sut.Length, sut.Width, sut.Height);
+            double actual = sut.LongestSide(sut.Length, sut.Width, sut.Height);
 
 
             //Assert
@@ -126,7 +126,7 @@ namespace PacketAndPriceTests
         [InlineData(1, 0.1F, 1)]
         [InlineData(0.1F, 1, 1)]
         [InlineData(1, 1, 0.1F)]
-        public void Should_CalculcateCorrectPackagePrice_When_UsingNumbersBelowOne(float a, float b, float c)
+        public void Should_CalculcateCorrectPackagePrice_When_UsingNumbersBelowOne(double a, double b, double c)
         {
             //Arrange
             var sut = new Package(a, 15, b, c);
@@ -158,7 +158,7 @@ namespace PacketAndPriceTests
         [InlineData(9.9)]
         [InlineData(9)]
         [InlineData(2.1)]
-        public void Should_UseSpecialPrice_When_WithinValuesForLengthAndBelowTenKG(float weight)
+        public void Should_UseSpecialPrice_When_WithinValuesForLengthAndBelowTenKG(double weight)
         {
             //Arrange
             var sut = new Package(0.29F, weight, 0.29F, 0.29F);
@@ -176,7 +176,7 @@ namespace PacketAndPriceTests
         [InlineData(19.1)]
         [InlineData(11)]
         [InlineData(20)]
-        public void Should_UseSpecialPrice_When_WithinValuesForLengthAndBelowTwentyKG(float weight)
+        public void Should_UseSpecialPrice_When_WithinValuesForLengthAndBelowTwentyKG(double weight)
         {
             //Arrange
             var sut = new Package(0.29F, weight, 0.29F, 0.29F);
@@ -208,10 +208,10 @@ namespace PacketAndPriceTests
         {
             //Arrange
             var sut = new Package(1, 1, 1, 1);
-            float expected = 1;
+            double expected = 1;
 
             //Act
-            float actual = sut.CalculateVolume();
+            double actual = sut.CalculateVolume();
 
             //Assert
             Assert.Equal(expected, actual);
@@ -222,10 +222,10 @@ namespace PacketAndPriceTests
         {
             //Arrange
             var sut = new Package(1, 1, 1, -1);
-            float expected = 0;
+            double expected = 0;
 
             //Act
-            float actual = sut.CalculateVolume();
+            double actual = sut.CalculateVolume();
 
             //Assert
             Assert.Equal(expected, actual);
@@ -235,14 +235,14 @@ namespace PacketAndPriceTests
         [InlineData(5, 10, 1.5F)]
         [InlineData(1.5F, 5, 10)]
         [InlineData(10, 1.5F, 5)]
-        public void Should_ReturnCorrectVolume_When_UsingDecimals(float a, float b, float c)
+        public void Should_ReturnCorrectVolume_When_UsingDecimals(double a, double b, double c)
         {
             //Arrange
             var sut = new Package(a, 1, b, c);
-            float expected = 75;
+            double expected = 75;
 
             //Act
-            float actual = sut.CalculateVolume();
+            double actual = sut.CalculateVolume();
 
             //Assert
             Assert.Equal(expected, actual);
