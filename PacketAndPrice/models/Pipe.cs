@@ -8,29 +8,29 @@ namespace PacketAndPrice.models
 {
     internal class Pipe : Item
     {
-        public int Diameter {  get; set; }
-        public int Circumference { get; set; }
+        public float Diameter {  get; set; }
+        public float Circumference { get; set; }
 
-        public Pipe(int length, int weight, int diameter, int circumference) : base(length, weight)
+        public Pipe(float length, float weight, float diameter, float circumference) : base(length, weight)
         {
             Diameter = diameter;
             Circumference = circumference;
         }
 
-        public override int CalculateVolume()
+        public override float CalculateVolume()
         {
             return Convert.ToInt32(Math.PI) * ((Diameter / 2) * (Diameter / 2)) * Length; //Think about using different measurements than int. Math.PI is normally double, maybe go with doubles?
         }
 
-        public override int CalculatePrice()
+        public override decimal CalculatePrice()
         {
             if(Weight < 2)
             {
-                return Circumference * Length * 2;
+                return Convert.ToDecimal(Circumference * Length * 2);
             }
             else
             {
-                return Circumference * Length * Weight;
+                return Convert.ToDecimal(Circumference * Length * Weight);
             }
         }
     }

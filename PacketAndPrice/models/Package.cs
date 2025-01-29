@@ -8,43 +8,54 @@ namespace PacketAndPrice.models
 {
     public class Package : Item
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
 
-        public Package(int length, int weight, int width, int height) : base(length, weight)
+        public Package(float length, float weight, float width, float height) : base(length, weight)
         {
             Width = width;
             Height = height;
         }
 
-        public override int CalculatePrice()
+        public override decimal CalculatePrice()
         {
-            int longestSide = LongestSide(Length, Height, Width);
-            int shortestSide = ShortestSide(Length, Height, Width);
-            if (longestSide < 30 && Weight <= 2)
+            float longestSide = LongestSide(Length, Height, Width);
+            float shortestSide = ShortestSide(Length, Height, Width);
+            if (longestSide < 0.3F && Weight <= 2)
             {
-                Price = 29;
+                return 29;
             }
-            else if (longestSide < 30 && Weight <= 10)
+            else if (longestSide < 0.3F && Weight <= 10)
             {
-                Price = 49;
+                return 49;
             }
-            else if (longestSide < 30 && Weight < 20)
+            else if (longestSide < 0.3F && Weight <= 20)
             {
-                Price = 79;
+                return 79;
             }
 
+            decimal price = Convert.ToDecimal(longestSide * shortestSide * Weight);
+            if (price <= 0)
+            {
+                Console.WriteLine("Price could not be generated");
+                return 0;
+            }
 
-
-            return longestSide * shortestSide * Weight + 10000; //10000 is for öre?
+            return price + 100; //10000 is for öre?, made it 100 for kronor instead
         }
 
-        public override int CalculateVolume()
+        public override float CalculateVolume()
         {
-            return Length * Width * Height;
+            float volume = Length * Width * Height;
+            if(volume <= 0)
+            {
+                Console.WriteLine("There was an error setting the volume.");
+                return 0;
+            }
+            return volume;
         }
 
-        public int ShortestSide(int x, int y, int z)
+        public float ShortestSide(float x, float y, float z)
         {
             if (x <= y && x <= z)
             {
@@ -64,7 +75,7 @@ namespace PacketAndPrice.models
             }
         }
 
-        public int LongestSide(int x, int y, int z)
+        public float LongestSide(float x, float y, float z)
         {
             if (z <= x && y <= x)
             {
