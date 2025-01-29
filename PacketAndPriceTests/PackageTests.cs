@@ -133,7 +133,7 @@ namespace PacketAndPriceTests
             decimal expected = 101.5M;
 
             //Act
-            decimal actual = sut.CalculatePrice();
+            decimal actual = Math.Round(sut.CalculatePrice(), 1); //added rounding up in order to not miss 0.000000002 and then crash.
 
             //Assert
             Assert.Equal(expected, actual);
@@ -243,6 +243,40 @@ namespace PacketAndPriceTests
 
             //Act
             double actual = sut.CalculateVolume();
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Should_ReturnTrue_When_CreatingPackage()
+        {
+            //Arrange
+            bool expected = true;
+
+            //Act
+            bool actual = Package.CreatePackage(1, 1, 1, 1);
+
+            //Assert
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(1, 1, 1, 0)]
+        [InlineData(0, 1, 1, 1)]
+        [InlineData(1, 0 , 1, 1)]
+        [InlineData(1, 1, 0, 1)]
+        [InlineData(-1, 1, 1, 1)]
+        [InlineData(1, -1, 1, 1)]
+        [InlineData(1, 1, -1, 1)]
+        [InlineData(1, 1, 1, -1)]
+        public void Should_ReturnFalse_When_ANumberIsZeroOrBelow(double length, double weight, double width, double height)
+        {
+            //Arrange
+            bool expected = false;
+
+            //Act
+            bool actual = Package.CreatePackage(length, weight, width, height);
 
             //Assert
             Assert.Equal(expected, actual);

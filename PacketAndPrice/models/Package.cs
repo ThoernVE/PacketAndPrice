@@ -17,6 +17,32 @@ namespace PacketAndPrice.models
             Height = height;
         }
 
+        public static bool CreatePackage(double length, double weight, double width, double height)
+        {
+            try
+            {
+                Package package = new Package(length, weight, width, height);
+                if (package == null || length <= 0 || weight <= 0 || width <= 0 || height <= 0)
+                {
+                    Console.WriteLine("One or more values were not correct. Please try again");
+                    return false;
+                }
+
+                package.Volume = package.CalculateVolume();
+                package.Price = package.CalculatePrice();
+
+                if (package.Volume <= 0 || package.Price <= 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public override decimal CalculatePrice()
         {
             double longestSide = LongestSide(Length, Height, Width);

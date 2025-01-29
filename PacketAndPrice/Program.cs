@@ -1,4 +1,6 @@
-﻿namespace PacketAndPrice
+﻿using PacketAndPrice.models;
+
+namespace PacketAndPrice
 {
     internal class Program
     {
@@ -6,6 +8,8 @@
         {
             Console.WriteLine("Hello, World!");
         }
+
+       
     }
 }
 
