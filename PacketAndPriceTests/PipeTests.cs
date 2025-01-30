@@ -88,7 +88,7 @@ namespace PacketAndPriceTests
         {
             new object[] {-1, 1, 1 },
             new object[] {1, -1, 1 },
-            new object[] {1, 1, -1 }
-        };
-    }
-}
+            new object[] {1, 1, -1 } 
+        };                          
+    }                               
+}                                   

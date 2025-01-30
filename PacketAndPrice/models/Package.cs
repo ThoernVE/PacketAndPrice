@@ -83,42 +83,12 @@ namespace PacketAndPrice.models
 
         public double ShortestSide(double x, double y, double z)
         {
-            if (x <= y && x <= z)
-            {
-                return x;
-            }
-            else if (y <= x && y <= z)
-            {
-                return y;
-            }
-            else if (z <= x && z <= y)
-            {
-                return z;
-            }
-            else
-            {
-                return 0;
-            }
+            return Math.Min(x, Math.Min(y, z));
         }
 
         public double LongestSide(double x, double y, double z)
         {
-            if (z <= x && y <= x)
-            {
-                return x;
-            }
-            else if (z <= y && x <= y)
-            {
-                return y;
-            }
-            else if (x <= z && y <= z)
-            {
-                return z;
-            }
-            else
-            {
-                return 0;
-            }
+            return Math.Max(z, Math.Max(x, y));
         }
 
     }
